@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Player_mainmenu.gd" type="Script" id=1]
+[ext_resource path="res://Models/Player/Idle1.png" type="Texture" id=2]
+[ext_resource path="res://Models/Player/Idle2.png" type="Texture" id=3]
+[ext_resource path="res://Models/Player/Fly1.png" type="Texture" id=4]
+[ext_resource path="res://Models/Player/Fly2.png" type="Texture" id=5]
+[ext_resource path="res://Models/Player/Fly3.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Fly",
+"speed": 10.0
+} ]
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = PoolVector2Array( 0, -10, 8.66025, 5, -8.66025, 5 )
+
+[node name="Player" type="KinematicBody2D" index="0"]
+
+position = Vector2( -0.5625, -1.0625 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="AnimatedSprite" parent="." index="0"]
+
+position = Vector2( 86.6875, 279.625 )
+frames = SubResource( 1 )
+animation = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 86.7187, 276.28 )
+scale = Vector2( 1.85727, 1.6369 )
+shape = SubResource( 2 )
+
+
